@@ -4,10 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atendimento</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f5f5f5;
+      color: #333;
+      text-align: center;
+    }
+    .box {
+      padding: 24px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      max-width: 420px;
+    }
+  </style>
 </head>
 <body>
+  <div class="box">
+    <h1>Atendimento online</h1>
+    <p>Estamos carregando o chat...</p>
+    <p>Se ele não abrir automaticamente, aguarde alguns segundos.</p>
+  </div>
+
   <script>
-    window.WebchatChannelId = 'SEU_TOKEN_REAL_AQUI';
+    window.WebchatChannelId = '50NR95wZUSKoHJUDCH/oT4mpLQvmDfaGNx0SpFqa//C8';
 
     function iniciar() {
       const s = document.createElement('script');
@@ -24,6 +50,13 @@
         }, 500);
 
         setTimeout(() => clearInterval(tentarAbrir), 10000);
+      };
+
+      s.onerror = function () {
+        document.querySelector('.box').innerHTML = `
+          <h1>Erro ao carregar o atendimento</h1>
+          <p>Não foi possível carregar o script do chat.</p>
+        `;
       };
 
       document.head.appendChild(s);
