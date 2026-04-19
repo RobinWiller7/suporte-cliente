@@ -1,35 +1,179 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atendimento</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SISF5 - Atendimento</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #f4fff8 0%, #e8fff1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: #103b25;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 100%;
+      width: 420px;
+      height: auto;
+      margin: 0 auto 24px;
+      display: block;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      color: #00b35a;
+    }
+
+    p {
+      margin: 0 0 24px;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #355746;
+    }
+
+    .btn {
+      display: inline-block;
+      border: none;
+      border-radius: 14px;
+      background: #00b35a;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 16px 28px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 8px 22px rgba(0, 179, 90, 0.28);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: #00994d;
+    }
+
+    .status {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #5d7a6b;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 18px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .logo {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <img src="logo.png" alt="Logo SISF5" class="logo" />
+
+    <h1>Atendimento Online</h1>
+    <p>
+      Clique no botão abaixo para iniciar seu atendimento com a equipe SISF5.
+    </p>
+
+    <button class="btn" id="abrirChat">Abrir atendimento</button>
+
+    <div class="status" id="status">
+      Carregando atendimento...
+    </div>
+  </div>
+
   <script>
+    // TROQUE PELO SEU TOKEN REAL
     window.WebchatChannelId = '4y2+y1bcBt6c2K2HiCsJRCcgcmENyRDJSC1/oWF68cbM';
 
-    function iniciar() {
+    let chatCarregado = false;
+
+    function atualizarStatus(texto) {
+      document.getElementById('status').textContent = texto;
+    }
+
+    function abrirChat() {
+      const btnChat =
+        document.querySelector('.webchat-fab-button') ||
+        document.querySelector('[class*="webchat"] button');
+
+      if (btnChat) {
+        btnChat.click();
+        atualizarStatus('Atendimento aberto com sucesso.');
+      } else {
+        atualizarStatus('Chat ainda não carregou. Aguarde alguns segundos e clique novamente.');
+      }
+    }
+
+    function carregarChat() {
       const s = document.createElement('script');
+      s.type = 'text/javascript';
       s.src = 'https://4y2+y1bcBt6c2K2HiCsJRCcgcmENyRDJSC1/oWF68cbM/webchat-fab.js';
       s.async = true;
 
       s.onload = function () {
+        chatCarregado = true;
+        atualizarStatus('Atendimento carregado. Você já pode abrir o chat.');
+
         const tentarAbrir = setInterval(function () {
-          const btn = document.querySelector('.webchat-fab-button');
-          if (btn) {
-            btn.click();
+          const btnChat = document.querySelector('.webchat-fab-button');
+          if (btnChat) {
             clearInterval(tentarAbrir);
           }
         }, 500);
 
-        setTimeout(() => clearInterval(tentarAbrir), 10000);
+        setTimeout(function () {
+          clearInterval(tentarAbrir);
+        }, 10000);
+      };
+
+      s.onerror = function () {
+        atualizarStatus('Erro ao carregar o atendimento. Verifique o token ou o script do chat.');
       };
 
       document.head.appendChild(s);
     }
 
-    window.onload = iniciar;
+    document.getElementById('abrirChat').addEventListener('click', abrirChat);
+
+    window.onload = function () {
+      carregarChat();
+    };
   </script>
 </body>
 </html>
