@@ -1,22 +1,35 @@
-<!DOCTYPE html> <html lang="pt-br"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Atendimento</title> </head> <body> <script> // Forçamos a variável no nível mais alto do navegador window.WebchatChannelId = 'TOKEN AQUI';
-    function iniciar() {
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.src = 'https://5d47c3e1-b6e4-40c9-bc38-f4f9a6973f3f/webchat-fab.js';
-        // Garante que o ID seja lido ANTES do script rodar
-        document.head.appendChild(s);
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atendimento</title>
+</head>
+<body>
+  <script>
+    window.WebchatChannelId = 'SEU_TOKEN_REAL_AQUI';
 
-        s.onload = function() {
-            var tentarAbrir = setInterval(function() {
-                var btn = document.querySelector('.webchat-fab-button') || document.querySelector('button');
-                if (btn) {
-                    btn.click();
-                    clearInterval(tentarAbrir);
-                }
-            }, 500);
-        };
+    function iniciar() {
+      const s = document.createElement('script');
+      s.src = 'https://5d47c3e1-b6e4-40c9-bc38-f4f9a6973f3f/webchat-fab.js';
+      s.async = true;
+
+      s.onload = function () {
+        const tentarAbrir = setInterval(function () {
+          const btn = document.querySelector('.webchat-fab-button');
+          if (btn) {
+            btn.click();
+            clearInterval(tentarAbrir);
+          }
+        }, 500);
+
+        setTimeout(() => clearInterval(tentarAbrir), 10000);
+      };
+
+      document.head.appendChild(s);
     }
 
     window.onload = iniciar;
-</script>
-</body> </html>
+  </script>
+</body>
+</html>
