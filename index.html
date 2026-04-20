@@ -115,19 +115,26 @@
     <p>Fale conosco agora mesmo</p>
   </div>
 
-  <script>
-    // 🔑 SEU TOKEN
-    window.WebchatChannelId = 'ce0b2f9d-8bbe-411b-8983-d7e8215ea6e9';
+<script>
+  window.WebchatChannelId = 'ce0b2f9d-8bbe-411b-8983-d7e8215ea6e9';
 
-    function iniciar() {
-      const s = document.createElement('script');
-      s.src = 'https://sischat.sisf5.com.br/webchat-fab.js';
-      s.async = true;
+  function iniciar() {
+    const s = document.createElement('script');
 
-      document.head.appendChild(s);
-    }
+    // 🔥 força não usar cache
+    s.src = 'https://sischat.sisf5.com.br/webchat-fab.js?v=' + Date.now();
 
-    window.onload = iniciar;
-  </script>
+    s.async = true;
+    document.head.appendChild(s);
+  }
+
+  // 🔥 força reload limpo uma vez
+  if (!sessionStorage.getItem('reloaded')) {
+    sessionStorage.setItem('reloaded', 'true');
+    location.reload();
+  } else {
+    iniciar();
+  }
+</script>
 </body>
 </html>
