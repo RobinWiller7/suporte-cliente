@@ -122,6 +122,42 @@
       background:var(--green);
     }
 
+    .menu-toggle{
+      display:none;
+      width:46px;
+      height:42px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:6px;
+      padding:0;
+    }
+
+    .menu-toggle span{
+      width:24px;
+      height:2px;
+      background:#fff;
+      border-radius:999px;
+      display:block;
+      transition:.25s;
+    }
+
+    .menu-toggle.active span:nth-child(1){
+      transform:translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2){
+      opacity:0;
+    }
+
+    .menu-toggle.active span:nth-child(3){
+      transform:translateY(-8px) rotate(-45deg);
+    }
+
     .top-cta{
       background:linear-gradient(135deg,var(--green),#0aa85a);
       padding:12px 24px;
@@ -636,11 +672,72 @@
     }
 
     @media(max-width:800px){
-      .nav{height:auto;padding:14px 0;justify-content:center}
-      .brand{justify-content:center;width:100%;text-align:left}
-      nav{gap:14px}
-      nav a{font-size:12px}
-      nav a:after{display:none}
+      .nav{
+        min-height:74px;
+        height:auto;
+        padding:10px 0;
+        justify-content:space-between;
+        flex-wrap:wrap;
+      }
+
+      .brand{
+        justify-content:flex-start;
+        width:auto;
+        min-width:0;
+        flex:1;
+        text-align:left;
+      }
+
+      .brand img{
+        width:54px;
+        height:54px;
+      }
+
+      .brand strong{
+        font-size:25px;
+      }
+
+      .brand small{
+        font-size:11.5px;
+        padding-left:10px;
+      }
+
+      .menu-toggle{
+        display:flex;
+      }
+
+      nav{
+        width:100%;
+        flex:none;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        margin-top:10px;
+        padding:10px;
+        background:rgba(2,10,9,.98);
+        border:1px solid var(--line);
+        border-radius:14px;
+        box-shadow:0 18px 40px rgba(0,0,0,.35);
+      }
+
+      nav.open{
+        display:flex;
+      }
+
+      nav a{
+        font-size:13px;
+        padding:13px 14px;
+        border-bottom:1px solid rgba(255,255,255,.08);
+      }
+
+      nav a:last-child{
+        border-bottom:0;
+      }
+
+      nav a:after{
+        display:none;
+      }
       .hero-inner{min-height:auto;padding:70px 0 125px}
       .hero-points{grid-template-columns:repeat(2,1fr)}
       .strip-card{grid-template-columns:1fr}
@@ -669,7 +766,13 @@
       </div>
     </a>
 
-    <nav>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="menu-principal">
       <a class="active" href="#inicio">Início</a>
       <a href="#sobre">Sobre nós</a>
       <a href="#servicos">Serviços</a>
@@ -1003,6 +1106,27 @@
 </footer>
 
 <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const menuPrincipal = document.querySelector('#menu-principal');
+
+  if (menuToggle && menuPrincipal) {
+    menuToggle.addEventListener('click', () => {
+      const aberto = menuPrincipal.classList.toggle('open');
+      menuToggle.classList.toggle('active', aberto);
+      menuToggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+      menuToggle.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+    });
+
+    menuPrincipal.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuPrincipal.classList.remove('open');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menu');
+      });
+    });
+  }
+
   window.WebchatChannelId = 'ce0b2f9d-8bbe-411b-8983-d7e8215ea6e9';
 
   function iniciarSISChat() {
