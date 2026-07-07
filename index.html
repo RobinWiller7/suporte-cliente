@@ -3,289 +3,630 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SISF5 - Assistência Técnica e Consultoria em T.I. Suporte, monitoramento NOC, automação, servidores, redes, segurança, supermercados e cartórios." />
   <title>SISF5 - Assistência Técnica e Consultoria em T.I.</title>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #00a85a;
+      --primary-dark: #006b3f;
+      --primary-soft: #e8fff1;
+      --dark: #08291a;
+      --text: #123524;
+      --muted: #4c6b5b;
+      --white: #ffffff;
+      --shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: #f5fff9;
-      color: #123524;
+      color: var(--text);
       line-height: 1.6;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
     header {
-      background: linear-gradient(135deg, #006b3f, #00b35a);
-      color: #fff;
-      padding: 22px 8%;
+      background: rgba(0, 107, 63, 0.96);
+      color: var(--white);
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(10px);
     }
 
     .topbar {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      min-height: 86px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      flex-wrap: wrap;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
+      text-decoration: none;
     }
 
     .brand img {
-      width: 86px;
-      background: #fff;
-      border-radius: 14px;
+      width: 76px;
+      background: var(--white);
+      border-radius: 16px;
       padding: 6px;
     }
 
-    .brand h1 {
-      font-size: 28px;
-      line-height: 1.1;
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
     }
 
-    .brand span {
-      font-size: 14px;
+    .brand-title strong {
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title span {
+      font-size: 13px;
       opacity: 0.95;
     }
 
     nav {
       display: flex;
-      gap: 18px;
+      align-items: center;
+      gap: 20px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     nav a {
-      color: #fff;
+      color: var(--white);
       text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
+      font-weight: 700;
+      font-size: 14px;
+      opacity: 0.96;
+      transition: 0.25s;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
     }
 
     .hero {
-      padding: 95px 8%;
+      min-height: 680px;
+      padding: 110px 0 90px;
       background:
-        linear-gradient(rgba(0, 70, 40, 0.84), rgba(0, 120, 65, 0.86)),
-        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop");
+        linear-gradient(120deg, rgba(0, 55, 35, 0.90), rgba(0, 135, 78, 0.82)),
+        url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1800&auto=format&fit=crop");
       background-size: cover;
       background-position: center;
-      color: #fff;
-      text-align: center;
+      color: var(--white);
+      display: flex;
+      align-items: center;
     }
 
-    .hero h2 {
-      font-size: 46px;
-      margin-bottom: 20px;
+    .hero-content {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 9px 16px;
+      margin-bottom: 22px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.05;
+      margin-bottom: 22px;
+      letter-spacing: -1px;
     }
 
     .hero p {
-      max-width: 900px;
-      margin: 0 auto 32px;
       font-size: 20px;
+      max-width: 760px;
+      color: #e9fff2;
+      margin-bottom: 32px;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
-      justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 999px;
+      padding: 14px 26px;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      font-weight: 800;
+      transition: 0.28s;
+      border: 2px solid transparent;
+      cursor: pointer;
     }
 
     .btn-primary {
-      background: #fff;
-      color: #007a45;
+      background: var(--white);
+      color: var(--primary-dark);
     }
 
-    .btn-secondary {
-      border: 2px solid #fff;
-      color: #fff;
+    .btn-outline {
+      color: var(--white);
+      border-color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .btn-green {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 12px 30px rgba(0, 168, 90, 0.28);
     }
 
     .btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+    }
+
+    .hero-panel {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-panel-card {
+      background: var(--white);
+      color: var(--text);
+      border-radius: 22px;
+      padding: 24px;
+      margin-bottom: 14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+    }
+
+    .hero-panel-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-panel-card strong {
+      color: var(--primary-dark);
+      font-size: 20px;
+      display: block;
+      margin-bottom: 5px;
     }
 
     section {
-      padding: 70px 8%;
+      padding: 84px 0;
+    }
+
+    .wrap {
+      width: min(1180px, 92%);
+      margin: 0 auto;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 45px;
+      margin-bottom: 48px;
+    }
+
+    .section-title .eyebrow {
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 13px;
+      margin-bottom: 8px;
     }
 
     .section-title h2 {
-      font-size: 34px;
-      color: #007a45;
-      margin-bottom: 10px;
+      color: var(--primary-dark);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.15;
+      margin-bottom: 12px;
     }
 
     .section-title p {
-      color: #456b58;
+      color: var(--muted);
       font-size: 18px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+    }
+
+    .about-text h2 {
+      color: var(--primary-dark);
+      font-size: 38px;
+      margin-bottom: 18px;
+      line-height: 1.16;
+    }
+
+    .about-text p {
+      color: #355746;
+      font-size: 17px;
+      margin-bottom: 16px;
+    }
+
+    .check-list {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #254c38;
+      font-weight: 700;
+    }
+
+    .check span {
+      color: var(--primary);
+      font-size: 20px;
+      line-height: 1;
     }
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
     .card {
-      background: #fff;
+      background: var(--white);
+      border-radius: var(--radius);
       padding: 30px;
-      border-radius: 22px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transition: 0.3s;
-      border-top: 5px solid #00b35a;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0, 168, 90, 0.11);
+      border-top: 5px solid var(--primary);
+      transition: 0.28s;
+      min-height: 230px;
     }
 
     .card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-7px);
+      box-shadow: 0 18px 42px rgba(0,0,0,0.13);
     }
 
-    .card .icon {
-      font-size: 38px;
-      margin-bottom: 15px;
+    .icon {
+      font-size: 40px;
+      margin-bottom: 14px;
     }
 
     .card h3 {
-      color: #007a45;
+      color: var(--primary-dark);
       font-size: 22px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .about {
-      background: #ffffff;
+    .card p {
+      color: #486856;
+      font-size: 16px;
+    }
+
+    .soft {
+      background: linear-gradient(135deg, #eafff2, #ffffff);
+    }
+
+    .dark-section {
+      background:
+        linear-gradient(120deg, rgba(0, 48, 31, 0.92), rgba(0, 118, 70, 0.88)),
+        url("https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1800&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+    }
+
+    .dark-section .section-title h2,
+    .dark-section .section-title p,
+    .dark-section .section-title .eyebrow {
+      color: var(--white);
+    }
+
+    .dark-section .card {
+      background: rgba(255,255,255,0.96);
+      color: var(--text);
+    }
+
+    .stats {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 45px;
-      align-items: center;
-    }
-
-    .about img {
-      width: 100%;
-      border-radius: 24px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
-    }
-
-    .about-text h2 {
-      color: #007a45;
-      font-size: 34px;
-      margin-bottom: 20px;
-    }
-
-    .about-text p {
-      margin-bottom: 16px;
-      color: #355746;
-      font-size: 17px;
-    }
-
-    .highlights {
-      background: linear-gradient(135deg, #e8fff1, #ffffff);
-    }
-
-    .highlight-box {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 22px;
+    }
+
+    .stat {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 30px 20px;
       text-align: center;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
     }
 
-    .highlight {
-      background: #fff;
-      border-radius: 20px;
-      padding: 26px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
-    }
-
-    .highlight strong {
+    .stat strong {
       display: block;
-      font-size: 30px;
-      color: #00a85a;
+      color: var(--primary);
+      font-size: 36px;
       margin-bottom: 8px;
     }
 
-    .solutions {
-      background: #ffffff;
+    .stat span {
+      color: var(--muted);
+      font-weight: 700;
     }
 
-    .cartorios {
-      background:
-        linear-gradient(rgba(0, 55, 35, 0.88), rgba(0, 110, 60, 0.88)),
-        url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1600&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-      color: #fff;
+    .split-feature {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 34px;
+      align-items: center;
     }
 
-    .cartorios .section-title h2,
-    .cartorios .section-title p {
-      color: #fff;
+    .feature-box {
+      background: var(--white);
+      padding: 34px;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
     }
 
-    .cartorios .card {
-      background: rgba(255,255,255,0.96);
-      color: #123524;
+    .feature-box h2 {
+      color: var(--primary-dark);
+      font-size: 36px;
+      margin-bottom: 14px;
+      line-height: 1.14;
+    }
+
+    .feature-box p {
+      color: #3c5f4c;
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .feature-image {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-image img {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .timeline-item {
+      background: rgba(0,168,90,0.08);
+      border-left: 4px solid var(--primary);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .timeline-item strong {
+      color: var(--primary-dark);
+      display: block;
+      margin-bottom: 4px;
     }
 
     .contact {
-      background:
-        linear-gradient(rgba(0, 85, 48, 0.9), rgba(0, 120, 65, 0.9)),
-        url("https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1600&auto=format&fit=crop");
-      background-size: cover;
-      background-position: center;
-      color: #fff;
       text-align: center;
     }
 
-    .contact h2 {
-      font-size: 36px;
-      margin-bottom: 15px;
+    .contact-box {
+      background: var(--white);
+      border-radius: 30px;
+      padding: 44px;
+      box-shadow: var(--shadow);
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .contact p {
-      font-size: 19px;
-      max-width: 760px;
-      margin: 0 auto 30px;
+    .contact-box h2 {
+      color: var(--primary-dark);
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 26px;
     }
 
     footer {
-      background: #08291a;
+      background: var(--dark);
       color: #d8f5e6;
-      text-align: center;
-      padding: 30px 8%;
+      padding: 42px 0;
       font-size: 14px;
     }
 
-    footer strong {
-      color: #ffffff;
+    .footer-grid {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 26px;
+      align-items: start;
     }
 
-    @media (max-width: 768px) {
-      .hero h2 { font-size: 34px; }
-      .hero p { font-size: 17px; }
-      .about { grid-template-columns: 1fr; }
-      nav { justify-content: center; }
-      .brand { justify-content: center; width: 100%; }
-      .topbar { justify-content: center; }
+    footer h3 {
+      color: var(--white);
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    footer p {
+      margin-bottom: 7px;
+      color: #d8f5e6;
+    }
+
+    footer strong {
+      color: var(--white);
+    }
+
+    .copyright {
+      width: min(1180px, 92%);
+      margin: 26px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      text-align: center;
+      color: #bde8d1;
+    }
+
+    /* Proteção para evitar que o CSS global quebre o webchat */
+    iframe {
+      max-width: none !important;
+    }
+
+    [id*="webchat"],
+    [id*="webchat"] *,
+    [class*="webchat"],
+    [class*="webchat"] *,
+    [class*="sischat"],
+    [class*="sischat"] * {
+      max-width: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero-content,
+      .about-grid,
+      .split-feature,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-panel {
+        max-width: 640px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        justify-content: center;
+        text-align: center;
+        padding: 14px 0;
+      }
+
+      .brand {
+        justify-content: center;
+        width: 100%;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 70px 0;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .cards,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 62px 0;
+      }
+
+      .about-image img,
+      .feature-image img {
+        height: 320px;
+      }
+
+      .contact-box {
+        padding: 32px 22px;
+      }
     }
   </style>
 </head>
@@ -294,228 +635,345 @@
 
 <header>
   <div class="topbar">
-    <div class="brand">
+    <a class="brand" href="#inicio" aria-label="SISF5">
       <img src="logo.png" alt="Logo SISF5">
-      <div>
-        <h1>SISF5</h1>
+      <div class="brand-title">
+        <strong>SISF5</strong>
         <span>Assistência Técnica e Consultoria em T.I.</span>
       </div>
-    </div>
+    </a>
 
-    <nav>
+    <nav aria-label="Menu principal">
       <a href="#inicio">Início</a>
       <a href="#servicos">Serviços</a>
       <a href="#supermercados">Supermercados</a>
       <a href="#cartorios">Cartórios</a>
+      <a href="#noc">NOC</a>
       <a href="#contato">Contato</a>
     </nav>
   </div>
 </header>
 
+<main>
+
 <section class="hero" id="inicio">
-  <h2>Tecnologia, suporte e monitoramento para empresas</h2>
-  <p>
-    Soluções em T.I., servidores, redes, segurança, automações, atendimento digital,
-    monitoramento NOC e projetos especializados para supermercados, cartórios e empresas.
-  </p>
-
-  <div class="hero-buttons">
-    <a href="#servicos" class="btn btn-primary">Conhecer serviços</a>
-    <a href="#contato" class="btn btn-secondary">Solicitar atendimento</a>
-  </div>
-</section>
-
-<section class="about">
-  <div class="about-text">
-    <h2>Sobre a SISF5</h2>
-    <p>
-      A SISF5 oferece assistência técnica e consultoria em T.I. para empresas que precisam
-      de estabilidade, segurança, suporte rápido e ambientes bem monitorados.
-    </p>
-    <p>
-      Atuamos com servidores, Proxmox, Zabbix, Grafana, Docker, bancos de dados, redes,
-      automações com n8n, Cloudflare, Zero Trust e atendimento via WhatsApp com SISChat.
-    </p>
-    <p>
-      Nosso foco é reduzir falhas, melhorar processos e entregar uma T.I. mais organizada,
-      segura e eficiente para o seu negócio.
-    </p>
-  </div>
-
-  <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200&auto=format&fit=crop" alt="Equipe de tecnologia">
-</section>
-
-<section id="servicos">
-  <div class="section-title">
-    <h2>Nossos Serviços</h2>
-    <p>Soluções completas para infraestrutura, suporte, segurança e automação.</p>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <div class="icon">🖥️</div>
-      <h3>Suporte Técnico</h3>
-      <p>Atendimento remoto e presencial para computadores, sistemas, impressoras, redes e usuários.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🛡️</div>
-      <h3>Redes e Segurança</h3>
-      <p>Configuração de firewall, VPN, MikroTik, Cloudflare, Zero Trust e proteção de acessos.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">☁️</div>
-      <h3>Servidores e Proxmox</h3>
-      <p>Virtualização, backup, migração de VMs, cluster, alta disponibilidade e recuperação de ambientes.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📊</div>
-      <h3>Zabbix e Grafana</h3>
-      <p>Painéis personalizados, alertas, indicadores, relatórios e acompanhamento em tempo real.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">⚙️</div>
-      <h3>Automação com n8n</h3>
-      <p>Fluxos automatizados para WhatsApp, relatórios, e-mails, tickets, integrações e processos internos.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">💬</div>
-      <h3>SISChat</h3>
-      <p>Atendimento por WhatsApp com filas, usuários, controle de tickets, histórico e automações inteligentes.</p>
-    </div>
-  </div>
-</section>
-
-<section class="highlights" id="supermercados">
-  <div class="section-title">
-    <h2>Soluções para Supermercados</h2>
-    <p>Monitoramento e suporte para ambientes de loja, retaguarda, servidores e operação crítica.</p>
-  </div>
-
-  <div class="highlight-box">
-    <div class="highlight">
-      <strong>NOC</strong>
-      <span>Monitoramento contínuo da operação</span>
-    </div>
-
-    <div class="highlight">
-      <strong>TEF/PIX</strong>
-      <span>Acompanhamento de serviços de pagamento</span>
-    </div>
-
-    <div class="highlight">
-      <strong>Servidores</strong>
-      <span>Backup, virtualização e alta disponibilidade</span>
-    </div>
-
-    <div class="highlight">
-      <strong>Relatórios</strong>
-      <span>Indicadores para gestão e suporte</span>
-    </div>
-  </div>
-</section>
-
-<section class="cartorios" id="cartorios">
-  <div class="section-title">
-    <h2>Projetos para Cartórios</h2>
-    <p>Atuação em projetos de adequação tecnológica, segurança e continuidade operacional.</p>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <div class="icon">📜</div>
-      <h3>Provimento dos Cartórios</h3>
+  <div class="hero-content">
+    <div>
+      <div class="badge">🟢 Tecnologia, suporte e monitoramento para empresas</div>
+      <h1>Soluções em T.I. para manter sua operação segura, estável e produtiva.</h1>
       <p>
-        Apoio em projetos relacionados ao novo provimento, organização da infraestrutura,
-        segurança, documentação técnica e melhoria dos processos tecnológicos.
+        A SISF5 atua com suporte técnico, consultoria, servidores, redes, segurança,
+        automações, Cloudflare, monitoramento NOC, SISChat, supermercados e projetos
+        tecnológicos para cartórios.
+      </p>
+      <div class="hero-actions">
+        <a href="#servicos" class="btn btn-primary">Conhecer serviços</a>
+        <a href="#contato" class="btn btn-outline">Solicitar atendimento</a>
+      </div>
+    </div>
+
+    <div class="hero-panel" aria-label="Destaques SISF5">
+      <div class="hero-panel-card">
+        <strong>Monitoramento NOC</strong>
+        <span>Zabbix, Grafana, alertas automáticos e acompanhamento de ambientes críticos.</span>
+      </div>
+      <div class="hero-panel-card">
+        <strong>Infraestrutura e Segurança</strong>
+        <span>Proxmox, servidores, redes, backup, firewall, VPN e Cloudflare Zero Trust.</span>
+      </div>
+      <div class="hero-panel-card">
+        <strong>Automação e Atendimento</strong>
+        <span>Fluxos com n8n, relatórios, integração com WhatsApp e SISChat.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <div class="section-title" style="text-align:left; margin-bottom:18px;">
+        <div class="eyebrow">Quem somos</div>
+        <h2>Consultoria em T.I. com foco em resultado operacional.</h2>
+      </div>
+      <p>
+        A SISF5 oferece assistência técnica e consultoria em tecnologia para empresas
+        que precisam de estabilidade, segurança, suporte rápido e ambientes bem monitorados.
+      </p>
+      <p>
+        Atuamos com servidores, virtualização, redes, bancos de dados, automação,
+        atendimento digital, monitoramento e padronização de processos de suporte.
+      </p>
+      <p>
+        Nosso objetivo é reduzir falhas, melhorar a visibilidade dos ambientes e entregar
+        uma T.I. mais organizada, segura e eficiente.
+      </p>
+
+      <div class="check-list">
+        <div class="check"><span>✓</span> Suporte remoto e presencial para empresas</div>
+        <div class="check"><span>✓</span> Projetos de infraestrutura, segurança e continuidade</div>
+        <div class="check"><span>✓</span> Automação de processos e atendimento digital</div>
+      </div>
+    </div>
+
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1400&auto=format&fit=crop" alt="Equipe de tecnologia em reunião">
+    </div>
+  </div>
+</section>
+
+<section class="soft" id="servicos">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Serviços</div>
+      <h2>Soluções completas para sua infraestrutura</h2>
+      <p>Atendimento técnico, segurança, monitoramento, automação e consultoria para ambientes corporativos.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🖥️</div>
+        <h3>Suporte Técnico</h3>
+        <p>Atendimento remoto e presencial para computadores, sistemas, impressoras, redes e usuários.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h3>Redes e Segurança</h3>
+        <p>Firewall, VPN, MikroTik, Cloudflare, Zero Trust, controle de acessos e proteção de ambientes.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">☁️</div>
+        <h3>Servidores e Proxmox</h3>
+        <p>Virtualização, backup, migração de VMs, cluster, alta disponibilidade e recuperação de ambientes.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📊</div>
+        <h3>Zabbix e Grafana</h3>
+        <p>Painéis personalizados, alertas, indicadores, relatórios e acompanhamento em tempo real.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">⚙️</div>
+        <h3>Automação com n8n</h3>
+        <p>Fluxos automatizados para WhatsApp, relatórios, e-mails, tickets, integrações e processos internos.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>SISChat</h3>
+        <p>Atendimento por WhatsApp com filas, usuários, tickets, histórico, automações e organização do suporte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="supermercados">
+  <div class="wrap split-feature">
+    <div class="feature-image">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop" alt="Supermercado com corredores organizados">
+    </div>
+
+    <div class="feature-box">
+      <div class="section-title" style="text-align:left; margin-bottom:18px;">
+        <div class="eyebrow">Especialidade</div>
+        <h2>Soluções para supermercados</h2>
+      </div>
+      <p>
+        Estruturamos suporte e monitoramento para ambientes de loja, retaguarda,
+        servidores, rede, internet, TEF/PIX, sistemas e operação crítica.
+      </p>
+      <p>
+        O foco é acompanhar o ambiente de ponta a ponta, reduzir indisponibilidades
+        e acelerar a resposta quando algo impacta a loja.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>Monitoramento de ambiente</strong>
+          Internet, servidores, rede, serviços e sistemas críticos.
+        </div>
+        <div class="timeline-item">
+          <strong>Pagamentos e operação</strong>
+          Acompanhamento de TEF/PIX e alertas de indisponibilidade.
+        </div>
+        <div class="timeline-item">
+          <strong>Relatórios e indicadores</strong>
+          Visão gerencial para suporte, falhas recorrentes e disponibilidade.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section" id="cartorios">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Projetos especializados</div>
+      <h2>Provimento dos Cartórios</h2>
+      <p>
+        Projetos de adequação tecnológica, segurança da informação, documentação,
+        continuidade operacional e organização da infraestrutura para cartórios.
       </p>
     </div>
 
-    <div class="card">
-      <div class="icon">🔐</div>
-      <h3>Segurança da Informação</h3>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">📜</div>
+        <h3>Adequação tecnológica</h3>
+        <p>Apoio em projetos relacionados ao novo provimento, organização técnica e melhoria dos processos internos.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔐</div>
+        <h3>Segurança da informação</h3>
+        <p>Controle de acessos, boas práticas, senhas, proteção de servidores, estações e ambientes críticos.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💾</div>
+        <h3>Backup e continuidade</h3>
+        <p>Rotinas de backup, testes de restauração, redundância e redução de riscos operacionais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft" id="noc">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">NOC e Monitoramento</div>
+      <h2>Visibilidade para agir antes da parada</h2>
+      <p>Alertas, painéis, automações e relatórios para acompanhar ambientes críticos em tempo real.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>Monitoramento contínuo</span>
+      </div>
+      <div class="stat">
+        <strong>NOC</strong>
+        <span>Alertas inteligentes</span>
+      </div>
+      <div class="stat">
+        <strong>Backup</strong>
+        <span>Controle e prevenção</span>
+      </div>
+      <div class="stat">
+        <strong>IA</strong>
+        <span>Automação de respostas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solucoes">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="eyebrow">Soluções</div>
+      <h2>Organização, segurança e automação</h2>
+      <p>Projetos sob medida para tornar a T.I. da sua empresa mais previsível e eficiente.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🔔</div>
+        <h3>Alertas automáticos</h3>
+        <p>Notificações sobre quedas de internet, servidores, serviços, sistemas críticos e recuperação automática.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📁</div>
+        <h3>Relatórios gerenciais</h3>
+        <p>Relatórios diários, semanais e mensais para acompanhar chamados, falhas, disponibilidade e desempenho.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔐</div>
+        <h3>Controle de acessos</h3>
+        <p>Boas práticas para senhas, cofres, acessos administrativos, usuários e segurança operacional.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🚀</div>
+        <h3>Projetos personalizados</h3>
+        <p>Desenvolvimento de soluções específicas para a realidade do seu negócio e da sua infraestrutura.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌐</div>
+        <h3>Cloudflare e Zero Trust</h3>
+        <p>Publicação segura de aplicações, túneis, regras de acesso, autenticação e proteção de serviços.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>Integrações</h3>
+        <p>Integrações entre sistemas, WhatsApp, e-mail, banco de dados, APIs, tickets e relatórios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact soft" id="contato">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Precisa de suporte ou consultoria?</h2>
       <p>
-        Controle de acessos, boas práticas de senhas, proteção de servidores, estações,
-        backups e ambientes críticos.
+        Fale com a SISF5 pelo botão de atendimento no canto da tela. Nossa equipe pode ajudar
+        com suporte, monitoramento, automação, segurança, servidores e projetos de T.I.
       </p>
-    </div>
-
-    <div class="card">
-      <div class="icon">💾</div>
-      <h3>Backup e Continuidade</h3>
-      <p>
-        Estruturação de rotinas de backup, testes de restauração, redundância e planos para
-        redução de riscos operacionais.
-      </p>
+      <a href="#inicio" class="btn btn-green">Voltar ao início</a>
     </div>
   </div>
 </section>
 
-<section class="solutions" id="solucoes">
-  <div class="section-title">
-    <h2>Soluções para sua empresa</h2>
-    <p>Organize sua T.I. com processos, segurança e automação.</p>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <div class="icon">🔔</div>
-      <h3>Alertas Automáticos</h3>
-      <p>Receba notificações sobre quedas de internet, servidores, serviços e sistemas críticos.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📁</div>
-      <h3>Relatórios Gerenciais</h3>
-      <p>Relatórios diários, semanais e mensais para acompanhar chamados, falhas e desempenho.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🔐</div>
-      <h3>Controle de Acessos</h3>
-      <p>Implantação de boas práticas para senhas, cofres, acessos administrativos e segurança.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🚀</div>
-      <h3>Projetos Personalizados</h3>
-      <p>Desenvolvimento de soluções sob medida para a realidade da sua empresa.</p>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contato">
-  <h2>Precisa de suporte ou consultoria?</h2>
-  <p>
-    Clique no botão de atendimento no canto da tela e fale com nossa equipe.
-    Estamos prontos para ajudar sua empresa com suporte, monitoramento, automação e projetos de T.I.
-  </p>
-  <a href="#inicio" class="btn btn-primary">Voltar ao início</a>
-</section>
+</main>
 
 <footer>
-  <p><strong>SISF5 - Assistência Técnica e Consultoria em T.I.</strong></p>
-  <p>Razão Social: <strong>Robson Willer Goncalves Ferreira</strong></p>
-  <p>CNPJ: <strong>42.085.793/0001-39</strong></p>
-  <p>Patos de Minas/MG • Tecnologia, suporte, automação, segurança e monitoramento</p>
-  <p>© 2026 SISF5. Todos os direitos reservados.</p>
+  <div class="footer-grid">
+    <div>
+      <h3>SISF5</h3>
+      <p><strong>SISF5 - Assistência Técnica e Consultoria em T.I.</strong></p>
+      <p>Tecnologia, suporte, automação, segurança e monitoramento para empresas.</p>
+      <p>Patos de Minas/MG</p>
+    </div>
+
+    <div>
+      <h3>Dados cadastrais</h3>
+      <p>Razão Social: <strong>Robson Willer Goncalves Ferreira</strong></p>
+      <p>CNPJ: <strong>42.085.793/0001-39</strong></p>
+    </div>
+
+    <div>
+      <h3>Áreas de atuação</h3>
+      <p>Suporte Técnico</p>
+      <p>NOC e Monitoramento</p>
+      <p>Supermercados</p>
+      <p>Cartórios</p>
+      <p>Automação e SISChat</p>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2026 SISF5. Todos os direitos reservados.
+  </div>
 </footer>
 
 <script>
   window.WebchatChannelId = 'ce0b2f9d-8bbe-411b-8983-d7e8215ea6e9';
 
-  function iniciar() {
+  function iniciarSISChat() {
     const s = document.createElement('script');
     s.src = 'https://sischat.sisf5.com.br/webchat-fab.js?v=' + Date.now();
     s.async = true;
     document.head.appendChild(s);
   }
 
-  iniciar();
+  iniciarSISChat();
 </script>
 
 </body>
