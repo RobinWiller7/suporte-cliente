@@ -1,1019 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SISF5 - Assistência Técnica e Consultoria em T.I. Infraestrutura, segurança, monitoramento NOC, automação, supermercados e cartórios." />
-  <title>SISF5 - Tecnologia, Suporte e Monitoramento</title>
-
-  <style>
-    :root{
-      --bg:#06110e;
-      --bg2:#071b17;
-      --green:#08c465;
-      --green2:#00a85a;
-      --green3:#05683f;
-      --white:#ffffff;
-      --muted:#c8d8d1;
-      --text:#eefbf5;
-      --card:#f7fbf9;
-      --darktext:#0c2119;
-      --line:rgba(8,196,101,.28);
-      --shadow:0 18px 55px rgba(0,0,0,.35);
-      --radius:22px;
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.55;
-      overflow-x:hidden;
-    }
-
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
-
-    .container{
-      width:min(1220px,92%);
-      margin:0 auto;
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(2,10,9,.92);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav{
-      height:78px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:28px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      min-width:240px;
-    }
-
-    .brand img{
-      width:64px;
-      height:64px;
-      object-fit:contain;
-      background:#fff;
-      border-radius:14px;
-      padding:5px;
-    }
-
-    .brand strong{
-      font-size:30px;
-      letter-spacing:.5px;
-      color:#fff;
-    }
-
-    .brand small{
-      display:block;
-      color:#cce7dc;
-      font-size:13px;
-      line-height:1.3;
-      padding-left:14px;
-      border-left:1px solid var(--green);
-    }
-
-    nav{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:26px;
-      flex-wrap:wrap;
-    }
-
-    nav a{
-      font-size:13px;
-      font-weight:800;
-      text-transform:uppercase;
-      color:#fff;
-      opacity:.94;
-      transition:.25s;
-      position:relative;
-    }
-
-    nav a:hover,
-    nav a.active{color:var(--green)}
-
-    nav a.active:after,
-    nav a:hover:after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:-14px;
-      height:2px;
-      background:var(--green);
-    }
-
-    .top-cta{
-      background:linear-gradient(135deg,var(--green),#0aa85a);
-      padding:12px 24px;
-      border-radius:999px;
-      color:#fff;
-      font-weight:800;
-      font-size:14px;
-      box-shadow:0 12px 30px rgba(8,196,101,.25);
-      white-space:nowrap;
-    }
-
-    .hero{
-      min-height:590px;
-      position:relative;
-      background:
-        linear-gradient(90deg, rgba(2,10,9,.98) 0%, rgba(2,10,9,.82) 42%, rgba(2,10,9,.35) 100%),
-        url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1900&auto=format&fit=crop");
-      background-size:cover;
-      background-position:center;
-      border-bottom:1px solid var(--line);
-    }
-
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at 18% 28%, rgba(8,196,101,.18), transparent 34%);
-      pointer-events:none;
-    }
-
-    .hero-inner{
-      position:relative;
-      min-height:590px;
-      display:flex;
-      align-items:center;
-      padding:75px 0 120px;
-    }
-
-    .hero-content{
-      max-width:710px;
-    }
-
-    .hero h1{
-      font-size:clamp(38px,5.4vw,64px);
-      line-height:1;
-      text-transform:uppercase;
-      letter-spacing:-1.5px;
-      margin-bottom:18px;
-    }
-
-    .hero h1 span{
-      display:block;
-      color:var(--green);
-    }
-
-    .hero p{
-      font-size:19px;
-      color:#e7fff3;
-      max-width:650px;
-      margin-bottom:28px;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:16px;
-      align-items:center;
-      flex-wrap:wrap;
-      margin-bottom:34px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      justify-content:center;
-      border-radius:9px;
-      padding:14px 24px;
-      font-size:14px;
-      font-weight:900;
-      text-transform:uppercase;
-      transition:.25s;
-      border:1px solid transparent;
-    }
-
-    .btn-primary{
-      background:linear-gradient(135deg,var(--green),#0ba85c);
-      color:#fff;
-      box-shadow:0 14px 36px rgba(8,196,101,.26);
-    }
-
-    .btn-outline{
-      color:var(--green);
-      border-color:var(--green);
-      background:rgba(0,0,0,.25);
-    }
-
-    .btn:hover{
-      transform:translateY(-3px);
-      box-shadow:0 16px 38px rgba(0,0,0,.3);
-    }
-
-    .hero-points{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:18px;
-      max-width:820px;
-      margin-top:16px;
-    }
-
-    .hero-point{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      color:#e9fff3;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .hero-point i{
-      width:20px;
-      height:20px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border:1px solid var(--green);
-      border-radius:50%;
-      color:var(--green);
-      font-style:normal;
-      font-size:12px;
-    }
-
-    .service-strip{
-      position:relative;
-      z-index:5;
-      margin-top:-82px;
-      margin-bottom:22px;
-    }
-
-    .strip-card{
-      background:var(--card);
-      color:var(--darktext);
-      border-radius:15px;
-      box-shadow:var(--shadow);
-      padding:24px 28px;
-      display:grid;
-      grid-template-columns:repeat(6,1fr);
-      gap:0;
-      overflow:hidden;
-    }
-
-    .strip-item{
-      padding:0 20px;
-      border-right:1px solid #d4ded9;
-      display:grid;
-      grid-template-columns:48px 1fr;
-      gap:14px;
-      align-items:start;
-    }
-
-    .strip-item:last-child{border-right:0}
-
-    .strip-icon{
-      color:var(--green3);
-      font-size:34px;
-      line-height:1;
-    }
-
-    .strip-item h3{
-      font-size:14px;
-      text-transform:uppercase;
-      margin-bottom:5px;
-      color:#071b17;
-    }
-
-    .strip-item p{
-      font-size:12.5px;
-      color:#31473d;
-    }
-
-    section{
-      padding:74px 0;
-    }
-
-    .section-title{
-      margin-bottom:36px;
-      text-align:center;
-    }
-
-    .section-title small{
-      color:var(--green);
-      text-transform:uppercase;
-      font-weight:900;
-      letter-spacing:1.2px;
-    }
-
-    .section-title h2{
-      font-size:clamp(30px,4vw,44px);
-      line-height:1.1;
-      margin-top:8px;
-      color:#fff;
-    }
-
-    .section-title p{
-      max-width:780px;
-      margin:12px auto 0;
-      color:var(--muted);
-      font-size:17px;
-    }
-
-    .specialties{
-      padding-top:34px;
-      background:linear-gradient(180deg,#06110e 0%,#09231c 100%);
-    }
-
-    .special-grid{
-      display:grid;
-      grid-template-columns:1fr 1px 1fr;
-      gap:32px;
-      align-items:center;
-    }
-
-    .divider{
-      height:100%;
-      min-height:300px;
-      background:linear-gradient(180deg,transparent,var(--line),transparent);
-    }
-
-    .special-card{
-      display:grid;
-      grid-template-columns:42% 1fr;
-      gap:24px;
-      align-items:center;
-    }
-
-    .special-card.reverse{
-      grid-template-columns:1fr 42%;
-    }
-
-    .special-img{
-      border:1px solid var(--line);
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 18px 45px rgba(0,0,0,.35);
-    }
-
-    .special-img img{
-      width:100%;
-      height:250px;
-      object-fit:cover;
-    }
-
-    .special-content small{
-      color:#fff;
-      text-transform:uppercase;
-      font-weight:900;
-      letter-spacing:1px;
-    }
-
-    .special-content h2{
-      color:var(--green);
-      font-size:30px;
-      text-transform:uppercase;
-      line-height:1.1;
-      margin:4px 0 8px;
-    }
-
-    .special-content h3{
-      font-size:17px;
-      color:#fff;
-      margin-bottom:8px;
-    }
-
-    .special-content p{
-      color:#d6eae1;
-      margin-bottom:12px;
-      font-size:15px;
-    }
-
-    .check-list{
-      display:grid;
-      gap:6px;
-      margin:12px 0 18px;
-    }
-
-    .check{
-      color:#e7fff3;
-      font-size:14px;
-      display:flex;
-      gap:8px;
-      align-items:flex-start;
-    }
-
-    .check:before{
-      content:"✓";
-      color:var(--green);
-      font-weight:900;
-    }
-
-    .stats-wrap{
-      padding:0 0 40px;
-      background:#09231c;
-    }
-
-    .stats{
-      border:1px solid var(--line);
-      border-radius:14px;
-      background:linear-gradient(135deg,rgba(8,196,101,.12),rgba(4,20,17,.92));
-      display:grid;
-      grid-template-columns:repeat(6,1fr);
-      overflow:hidden;
-      box-shadow:0 18px 42px rgba(0,0,0,.25);
-    }
-
-    .stat{
-      padding:24px 18px;
-      display:flex;
-      gap:13px;
-      align-items:center;
-      justify-content:center;
-      border-right:1px solid rgba(255,255,255,.22);
-    }
-
-    .stat:last-child{border-right:0}
-
-    .stat .ico{
-      font-size:32px;
-      color:var(--green);
-    }
-
-    .stat strong{
-      display:block;
-      color:#fff;
-      font-size:24px;
-      line-height:1;
-    }
-
-    .stat span{
-      color:#e6fff1;
-      font-size:12px;
-    }
-
-    .services{
-      background:#06110e;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:22px;
-    }
-
-    .card{
-      background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:28px;
-      min-height:218px;
-      transition:.25s;
-      box-shadow:0 14px 36px rgba(0,0,0,.22);
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      border-color:rgba(8,196,101,.65);
-    }
-
-    .card .icon{
-      font-size:36px;
-      color:var(--green);
-      margin-bottom:12px;
-    }
-
-    .card h3{
-      color:#fff;
-      font-size:20px;
-      margin-bottom:9px;
-    }
-
-    .card p{
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    .tech{
-      background:
-        linear-gradient(120deg,rgba(2,10,9,.92),rgba(2,10,9,.78)),
-        url("https://images.unsplash.com/photo-1560732488-6b0df240254a?q=80&w=1800&auto=format&fit=crop");
-      background-size:cover;
-      background-position:center;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-    }
-
-    .tech-logos{
-      display:grid;
-      grid-template-columns:repeat(6,1fr);
-      gap:18px;
-      margin-top:34px;
-    }
-
-    .tech-logo{
-      background:rgba(255,255,255,.08);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:20px;
-      text-align:center;
-      color:#fff;
-      font-weight:900;
-      min-height:82px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:18px;
-    }
-
-    .contact{
-      background:linear-gradient(135deg,#071b17,#062b20);
-      text-align:center;
-    }
-
-    .contact-box{
-      max-width:850px;
-      margin:0 auto;
-      background:rgba(255,255,255,.07);
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:44px 32px;
-      box-shadow:var(--shadow);
-    }
-
-    .contact-box h2{
-      font-size:40px;
-      line-height:1.1;
-      margin-bottom:14px;
-    }
-
-    .contact-box p{
-      color:var(--muted);
-      font-size:18px;
-      margin-bottom:25px;
-    }
-
-    footer{
-      background:#050d0b;
-      border-top:1px solid var(--line);
-      padding:46px 0 22px;
-    }
-
-    .footer-grid{
-      display:grid;
-      grid-template-columns:1.25fr .8fr .9fr .9fr 1fr;
-      gap:28px;
-    }
-
-    .footer-logo{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:12px;
-    }
-
-    .footer-logo img{
-      width:54px;
-      background:#fff;
-      border-radius:10px;
-      padding:4px;
-    }
-
-    footer h3{
-      color:#fff;
-      font-size:16px;
-      margin-bottom:12px;
-      text-transform:uppercase;
-    }
-
-    footer p, footer a{
-      color:#cce0d7;
-      font-size:13px;
-      margin-bottom:8px;
-      display:block;
-    }
-
-    footer strong{color:#fff}
-
-    .copyright{
-      margin-top:30px;
-      padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.12);
-      text-align:center;
-      color:#b8d5c8;
-      font-size:13px;
-    }
-
-    /* Mantém o SISChat padrão e evita interferência do CSS do site */
-    iframe{max-width:none !important}
-    [id*="webchat"], [id*="webchat"] *,
-    [class*="webchat"], [class*="webchat"] *,
-    [class*="sischat"], [class*="sischat"] *{
-      max-width:none;
-    }
-
-    @media(max-width:1100px){
-      .top-cta{display:none}
-      .strip-card{grid-template-columns:repeat(3,1fr);gap:20px}
-      .strip-item{border-right:0;border-bottom:1px solid #d4ded9;padding-bottom:16px}
-      .special-grid{grid-template-columns:1fr}
-      .divider{display:none}
-      .stats{grid-template-columns:repeat(3,1fr)}
-      .stat:nth-child(3){border-right:0}
-      .footer-grid{grid-template-columns:repeat(2,1fr)}
-      .tech-logos{grid-template-columns:repeat(3,1fr)}
-    }
-
-    @media(max-width:800px){
-      .nav{height:auto;padding:14px 0;justify-content:center}
-      .brand{justify-content:center;width:100%;text-align:left}
-      nav{gap:14px}
-      nav a{font-size:12px}
-      nav a:after{display:none}
-      .hero-inner{min-height:auto;padding:70px 0 125px}
-      .hero-points{grid-template-columns:repeat(2,1fr)}
-      .strip-card{grid-template-columns:1fr}
-      .strip-item{grid-template-columns:38px 1fr}
-      .special-card,.special-card.reverse{grid-template-columns:1fr}
-      .special-card.reverse .special-img{order:-1}
-      .cards{grid-template-columns:1fr}
-      .stats{grid-template-columns:1fr}
-      .stat{border-right:0;border-bottom:1px solid rgba(255,255,255,.14)}
-      .tech-logos{grid-template-columns:repeat(2,1fr)}
-      .footer-grid{grid-template-columns:1fr}
-      .contact-box h2{font-size:32px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SISF5</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#07110d;color:#fff;overflow-x:hidden}
+.container{width:min(1200px,92%);margin:auto}
+header{position:sticky;top:0;background:#06110ef2;border-bottom:1px solid #0bbf64;z-index:999}
+.nav{display:flex;justify-content:space-between;align-items:center;min-height:78px;gap:20px}
+.brand{display:flex;align-items:center;gap:15px;flex-shrink:0}
+.brand img{width:60px;background:#fff;border-radius:10px;padding:4px}
+.brand h1{font-size:32px}
+.brand p{font-size:13px;color:#cfd}
+nav{display:flex;flex:1;justify-content:flex-end;gap:18px;flex-wrap:wrap}
+nav a{text-decoration:none;color:#fff;font-weight:bold;font-size:13px}
+.hero{background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.7)),url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1800&auto=format&fit=crop') center/cover;height:600px;display:flex;align-items:center}
+.hero h2{font-size:60px;line-height:1}
+.hero h2 span{color:#08c465}
+.hero p{margin:20px 0;font-size:20px;max-width:650px}
+.btn{display:inline-block;background:#08c465;color:#fff;padding:15px 28px;border-radius:8px;text-decoration:none;font-weight:bold}
+.strip{margin-top:-60px}
+.strip-card{background:#fff;color:#222;border-radius:15px;padding:25px;display:grid;grid-template-columns:repeat(3,1fr);gap:25px;box-shadow:0 15px 40px rgba(0,0,0,.3)}
+.item{display:grid;grid-template-columns:50px 1fr;gap:12px}
+.item .i{font-size:34px;color:#08c465}
+section{padding:80px 0}
+.title{text-align:center;margin-bottom:40px}
+.title h2{font-size:42px;color:#08c465}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.card{background:#12221c;padding:28px;border-radius:18px;border:1px solid #0bbf64}
+.card h3{margin:10px 0;color:#08c465}
+footer{background:#050b08;padding:40px 0;border-top:1px solid #0bbf64}
+.footer{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
+.footer h3{margin-bottom:10px;color:#08c465}
+.footer p{font-size:14px;margin-bottom:6px}
+.copy{text-align:center;padding-top:25px;color:#bbb}
+iframe{max-width:none!important}
+[id*="webchat"],[class*="webchat"]{max-width:none!important}
+@media(max-width:900px){
+nav{justify-content:center}
+.cards,.footer,.strip-card{grid-template-columns:1fr}
+.hero{height:auto;padding:80px 0}
+.hero h2{font-size:42px}
+}
+</style>
 </head>
-
 <body>
 
 <header>
-  <div class="container nav">
-    <a href="#inicio" class="brand">
-      <img src="logo.png" alt="Logo SISF5">
-      <div>
-        <strong>SISF5</strong>
-        <small>Assistência Técnica e<br>Consultoria em T.I.</small>
-      </div>
-    </a>
-
-    <nav>
-      <a class="active" href="#inicio">Início</a>
-      <a href="#sobre">Sobre nós</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#supermercados">Supermercados</a>
-      <a href="#cartorios">Cartórios</a>
-      <a href="#noc">NOC</a>
-      <a href="#tecnologias">Tecnologias</a>
-      <a href="#contato">Contato</a>
-    </nav>
-
-
-    
-  </div>
+<div class="container nav">
+<div class="brand">
+<img src="logo.png">
+<div><h1>SISF5</h1><p>Assistência Técnica e Consultoria em T.I.</p></div>
+</div>
+<nav>
+<a href="#">INÍCIO</a>
+<a href="#">SOBRE</a>
+<a href="#">SERVIÇOS</a>
+<a href="#">SUPERMERCADOS</a>
+<a href="#">CARTÓRIOS</a>
+<a href="#">NOC</a>
+<a href="#">TECNOLOGIAS</a>
+<a href="#">CONTATO</a>
+</nav>
+</div>
 </header>
 
-<main>
-
-<section class="hero" id="inicio">
-  <div class="container hero-inner">
-    <div class="hero-content">
-      <h1>Tecnologia que protege.<span>Soluções que impulsionam.</span></h1>
-      <p>
-        Infraestrutura de T.I., monitoramento 24x7, segurança, automação e consultoria
-        especializada para empresas que não podem parar.
-      </p>
-
-      <div class="hero-actions">
-        <a class="btn btn-outline" href="#servicos">Nossos serviços →</a>
-      </div>
-
-      <div class="hero-points">
-        <div class="hero-point"><i>✓</i> Atendimento rápido</div>
-        <div class="hero-point"><i>✓</i> Soluções personalizadas</div>
-        <div class="hero-point"><i>✓</i> Tecnologia de ponta</div>
-        <div class="hero-point"><i>✓</i> Suporte especializado</div>
-      </div>
-    </div>
-  </div>
+<section class="hero">
+<div class="container">
+<h2>TECNOLOGIA QUE<br><span>PROTEGE.</span></h2>
+<p>Infraestrutura, monitoramento 24x7, segurança, automação e consultoria especializada para empresas.</p>
+<a class="btn" href="#servicos">Nossos Serviços</a>
+</div>
 </section>
 
-<div class="service-strip">
-  <div class="container">
-    <div class="strip-card">
-      <div class="strip-item">
-        <div class="strip-icon">🎧</div>
-        <div>
-          <h3>Suporte Técnico</h3>
-          <p>Atendimento remoto e presencial para usuários, sistemas, redes e equipamentos.</p>
-        </div>
-      </div>
-
-      <div class="strip-item">
-        <div class="strip-icon">🗄️</div>
-        <div>
-          <h3>Infraestrutura</h3>
-          <p>Servidores, virtualização, storages, backups e alta disponibilidade com Proxmox.</p>
-        </div>
-      </div>
-
-      <div class="strip-item">
-        <div class="strip-icon">🛡️</div>
-        <div>
-          <h3>Segurança</h3>
-          <p>Firewalls, VPN, Zero Trust, proteção de dados e controle de acessos.</p>
-        </div>
-      </div>
-
-      <div class="strip-item">
-        <div class="strip-icon">📊</div>
-        <div>
-          <h3>Monitoramento</h3>
-          <p>NOC 24x7, Zabbix, Grafana, alertas inteligentes e relatórios gerenciais.</p>
-        </div>
-      </div>
-
-      <div class="strip-item">
-        <div class="strip-icon">🤖</div>
-        <div>
-          <h3>Automação</h3>
-          <p>n8n: automações, integrações, fluxos de trabalho e produtividade.</p>
-        </div>
-      </div>
-
-      <div class="strip-item">
-        <div class="strip-icon">💬</div>
-        <div>
-          <h3>Atendimento Digital</h3>
-          <p>SISChat: WhatsApp, filas, usuários, tickets, histórico e relatórios.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container strip">
+<div class="strip-card">
+<div class="item"><div class="i">🎧</div><div><b>Suporte Técnico</b><p>Atendimento remoto e presencial.</p></div></div>
+<div class="item"><div class="i">🛡️</div><div><b>Segurança</b><p>Firewall, VPN, Zero Trust e LGPD.</p></div></div>
+<div class="item"><div class="i">📊</div><div><b>Monitoramento</b><p>Zabbix, Grafana e NOC 24x7.</p></div></div>
+<div class="item"><div class="i">☁️</div><div><b>Proxmox</b><p>Virtualização e Backup.</p></div></div>
+<div class="item"><div class="i">⚙️</div><div><b>Automação</b><p>Fluxos n8n e integrações.</p></div></div>
+<div class="item"><div class="i">💬</div><div><b>SISChat</b><p>Atendimento inteligente.</p></div></div>
+</div>
 </div>
 
-<section class="services" id="sobre">
-  <div class="container">
-    <div class="section-title">
-      <small>Sobre nós</small>
-      <h2>Consultoria em T.I. voltada para estabilidade e resultado</h2>
-      <p>
-        A SISF5 ajuda empresas a organizar infraestrutura, reduzir falhas,
-        melhorar segurança e automatizar processos de suporte e atendimento.
-      </p>
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Resposta rápida</h3>
-        <p>Atuação técnica para resolver problemas, reduzir indisponibilidade e manter a operação funcionando.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🔍</div>
-        <h3>Visibilidade total</h3>
-        <p>Monitoramento de links, servidores, serviços, backups, sistemas e ambientes críticos.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🧩</div>
-        <h3>Projetos sob medida</h3>
-        <p>Implantação de soluções conforme a realidade da empresa, com foco em segurança e continuidade.</p>
-      </div>
-    </div>
-  </div>
+<section id="servicos">
+<div class="container">
+<div class="title"><h2>Nossos Serviços</h2></div>
+<div class="cards">
+<div class="card"><h3>Supermercados</h3><p>Monitoramento, servidores, TEF/PIX, infraestrutura e suporte especializado.</p></div>
+<div class="card"><h3>Cartórios</h3><p>Projetos para adequação ao novo Provimento CNJ, segurança e continuidade.</p></div>
+<div class="card"><h3>Cloud & Infraestrutura</h3><p>Cloudflare, Docker, Proxmox, Zabbix, Grafana e segurança.</p></div>
+</div>
+</div>
 </section>
-
-<section class="specialties" id="supermercados">
-  <div class="container special-grid">
-    <div class="special-card">
-      <div class="special-img">
-        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop" alt="CPD com racks de servidores">
-      </div>
-
-      <div class="special-content">
-        <small>Especialização</small>
-        <h2>Supermercados</h2>
-        <p>Soluções completas para redes de supermercados, lojas e centros de distribuição.</p>
-
-        <div class="check-list">
-          <div class="check">Monitoramento de lojas, servidores e links</div>
-          <div class="check">Acompanhamento de TEF, PIX e serviços críticos</div>
-          <div class="check">Relatórios de indisponibilidade e performance</div>
-          <div class="check">Suporte rápido e equipe especializada</div>
-        </div>
-
-        <a class="btn btn-outline" href="#contato">Saiba mais →</a>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="special-card reverse" id="cartorios">
-      <div class="special-content">
-        <small>Especialização</small>
-        <h2>Cartórios</h2>
-        <h3>Novo Provimento CNJ</h3>
-        <p>
-          Apoiamos cartórios na adequação ao novo provimento com segurança,
-          organização de tecnologia, documentação e continuidade operacional.
-        </p>
-
-        <div class="check-list">
-          <div class="check">Adequação tecnológica e documental</div>
-          <div class="check">Segurança da informação e LGPD</div>
-          <div class="check">Backup, redundância e continuidade</div>
-          <div class="check">Infraestrutura estável e suporte especializado</div>
-        </div>
-
-        <a class="btn btn-outline" href="#contato">Saiba mais →</a>
-      </div>
-
-      <div class="special-img">
-        <img src="https://images.unsplash.com/photo-1560732488-6b0df240254a?q=80&w=1200&auto=format&fit=crop" alt="Sala de servidores e CPD">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="stats-wrap" id="noc">
-  <div class="container">
-    <div class="stats">
-      <div class="stat"><div class="ico">👥</div><div><strong>+200</strong><span>Clientes atendidos</span></div></div>
-      <div class="stat"><div class="ico">🛡️</div><div><strong>+500</strong><span>Ambientes monitorados</span></div></div>
-      <div class="stat"><div class="ico">⏱️</div><div><strong>24/7</strong><span>Monitoramento contínuo</span></div></div>
-      <div class="stat"><div class="ico">📅</div><div><strong>+10</strong><span>Anos de experiência</span></div></div>
-      <div class="stat"><div class="ico">✅</div><div><strong>+99,9%</strong><span>Disponibilidade</span></div></div>
-      <div class="stat"><div class="ico">🎧</div><div><strong>Suporte</strong><span>Rápido e humanizado</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="services" id="servicos">
-  <div class="container">
-    <div class="section-title">
-      <small>Serviços</small>
-      <h2>O que a SISF5 entrega para sua empresa</h2>
-      <p>Projetos, suporte e monitoramento para ambientes de T.I. que precisam de segurança e previsibilidade.</p>
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <div class="icon">🖥️</div>
-        <h3>Suporte técnico</h3>
-        <p>Atendimento remoto e presencial, diagnóstico, manutenção, estações, impressoras, redes e sistemas.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">☁️</div>
-        <h3>Proxmox e servidores</h3>
-        <p>Virtualização, migração de VMs, cluster, backups, storages, recuperação e alta disponibilidade.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">📈</div>
-        <h3>Zabbix e Grafana</h3>
-        <p>Dashboards, alertas, indicadores, relatórios e monitoramento personalizado por cliente.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🌐</div>
-        <h3>Cloudflare Zero Trust</h3>
-        <p>Proteção de aplicações, túneis seguros, autenticação, regras de acesso e publicação segura.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">⚙️</div>
-        <h3>Automação com n8n</h3>
-        <p>Integrações com WhatsApp, e-mail, APIs, bancos de dados, tickets e relatórios automáticos.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">💬</div>
-        <h3>SISChat</h3>
-        <p>Atendimento via WhatsApp com filas, usuários, tickets, histórico, relatórios e automações.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="tech" id="tecnologias">
-  <div class="container">
-    <div class="section-title">
-      <small>Tecnologias</small>
-      <h2>Ferramentas que utilizamos nos projetos</h2>
-      <p>Trabalhamos com soluções consolidadas para monitoramento, virtualização, automação e segurança.</p>
-    </div>
-
-    <div class="tech-logos">
-      <div class="tech-logo">PROXMOX</div>
-      <div class="tech-logo">ZABBIX</div>
-      <div class="tech-logo">GRAFANA</div>
-      <div class="tech-logo">n8n</div>
-      <div class="tech-logo">DOCKER</div>
-      <div class="tech-logo">CLOUDFLARE</div>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contato">
-  <div class="container">
-    <div class="contact-box">
-      <h2>Precisa de suporte ou consultoria?</h2>
-      <p>
-        Fale com a SISF5 pelo botão de atendimento. Podemos ajudar com suporte,
-        monitoramento, automação, segurança, servidores, supermercados e cartórios.
-      </p>
-      <a class="btn btn-primary" href="#inicio">Voltar ao início ↑</a>
-    </div>
-  </div>
-</section>
-
-</main>
 
 <footer>
-  <div class="container footer-grid">
-    <div>
-      <div class="footer-logo">
-        <img src="logo.png" alt="Logo SISF5">
-        <div>
-          <h3>SISF5</h3>
-          <p>Assistência Técnica e Consultoria em T.I.</p>
-        </div>
-      </div>
-      <p>Entregamos tecnologia com propósito: segurança, estabilidade, automação e suporte para o crescimento do seu negócio.</p>
-    </div>
-
-    <div>
-      <h3>Navegação</h3>
-      <a href="#inicio">Início</a>
-      <a href="#sobre">Sobre nós</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#supermercados">Supermercados</a>
-      <a href="#cartorios">Cartórios</a>
-      <a href="#noc">NOC</a>
-      <a href="#tecnologias">Tecnologias</a>
-      <a href="#contato">Contato</a>
-    </div>
-
-    <div>
-      <h3>Serviços</h3>
-      <p>Suporte Técnico</p>
-      <p>Infraestrutura de T.I.</p>
-      <p>Segurança da Informação</p>
-      <p>Monitoramento 24x7</p>
-      <p>Automação n8n</p>
-      <p>SISChat</p>
-    </div>
-
-    <div>
-      <h3>Empresa</h3>
-      <p>Razão Social:</p>
-      <p><strong>Robson Willer Goncalves Ferreira</strong></p>
-      <p>CNPJ:</p>
-      <p><strong>42.085.793/0001-39</strong></p>
-      <p>Patos de Minas - MG</p>
-    </div>
-
-    <div>
-      <h3>Tecnologias</h3>
-      <p>Proxmox</p>
-      <p>Zabbix</p>
-      <p>Grafana</p>
-      <p>n8n</p>
-      <p>Docker</p>
-      <p>Cloudflare</p>
-    </div>
-  </div>
-
-  <div class="container copyright">
-    © 2026 SISF5 - Assistência Técnica e Consultoria em T.I. | Todos os direitos reservados.
-  </div>
+<div class="container footer">
+<div><h3>SISF5</h3><p>Tecnologia, suporte e consultoria.</p></div>
+<div><h3>Empresa</h3><p><strong>Robson Willer Goncalves Ferreira</strong></p><p>CNPJ 42.085.793/0001-39</p></div>
+<div><h3>Especialidades</h3><p>Supermercados</p><p>Cartórios</p><p>NOC</p></div>
+<div><h3>Tecnologias</h3><p>Proxmox</p><p>Zabbix</p><p>Grafana</p><p>Cloudflare</p></div>
+</div>
+<div class="container copy">© 2026 SISF5</div>
 </footer>
 
 <script>
-  window.WebchatChannelId = 'ce0b2f9d-8bbe-411b-8983-d7e8215ea6e9';
-
-  function iniciarSISChat() {
-    const s = document.createElement('script');
-    s.src = 'https://sischat.sisf5.com.br/webchat-fab.js?v=' + Date.now();
-    s.async = true;
-    document.head.appendChild(s);
-  }
-
-  iniciarSISChat();
+window.WebchatChannelId='ce0b2f9d-8bbe-411b-8983-d7e8215ea6e9';
+const s=document.createElement('script');
+s.src='https://sischat.sisf5.com.br/webchat-fab.js?v='+Date.now();
+s.async=true;
+document.head.appendChild(s);
 </script>
 
 </body>
